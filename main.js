@@ -33,15 +33,21 @@ for (const exampleValue of exampleValues) {
   )
 
   // test if our solution works using builtin functions
-  const base10Value = parseInt(exampleValue.number, exampleValue.base)
-  const correctConvertedValue = base10Value
-    .toString(exampleValue.desiredBase)
-    .toLowerCase()
+  try {
+    const base10Value = parseInt(exampleValue.number, exampleValue.base)
+    const correctConvertedValue = base10Value
+      .toString(exampleValue.desiredBase)
+      .toLowerCase()
 
-  if (correctConvertedValue !== convertedValue) {
-    console.warn('There might be a mistake in your sulution:')
-    console.warn(`Given input: ${JSON.stringify(exampleValue)}`)
-    console.warn(`Your result: '${convertedValue}'`)
-    console.warn(`parseInt/toString result: '${correctConvertedValue}'`)
+    if (correctConvertedValue !== convertedValue) {
+      console.warn('There might be a mistake in your sulution:')
+      console.warn(`Given input: ${JSON.stringify(exampleValue)}`)
+      console.warn(`Your result: '${convertedValue}'`)
+      console.warn(`parseInt/toString result: '${correctConvertedValue}'`)
+    }
+  } catch {
+    console.error(
+      "Something went wrong. Maybe the toString/parseInt doesn't know base of 1. Our solution is better?"
+    )
   }
 }
